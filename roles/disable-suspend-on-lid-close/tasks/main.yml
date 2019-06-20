@@ -1,0 +1,7 @@
+---
+- name: disable suspend on lid close
+  lineinfile:
+    path: "/etc/systemd/logind.conf"
+    regexp: "^#?HandleLidSwitch="
+    line: "HandleLidSwitch=ignore"
+    backup: yes
