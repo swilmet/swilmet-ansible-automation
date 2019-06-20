@@ -1,4 +1,6 @@
 ---
+# When closing the laptop screen.
+# GNOME doesn't offer a configuration for this.
 - name: disable suspend on lid close
   lineinfile:
     path: "/etc/systemd/logind.conf"
