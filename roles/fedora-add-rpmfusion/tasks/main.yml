@@ -1,0 +1,22 @@
+# Copyright 2017-2019 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+- name: import GPG key for RPM Fusion free Fedora {{ ansible_facts['distribution_major_version'] }}
+  rpm_key:
+    key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_facts['distribution_major_version'] }}"
+    state: present
+
+- name: import GPG key for RPM Fusion nonfree Fedora {{ ansible_facts['distribution_major_version'] }}
+  rpm_key:
+    key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_facts['distribution_major_version'] }}"
+    state: present
+
+- name: install repo RPM Fusion free Fedora {{ ansible_facts['distribution_major_version'] }}
+  package:
+    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+    state: present
+
+- name: install repo RPM Fusion nonfree Fedora {{ ansible_facts['distribution_major_version'] }}
+  package:
+    name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+    state: present
