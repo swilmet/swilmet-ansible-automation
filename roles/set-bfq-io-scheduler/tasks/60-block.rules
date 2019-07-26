@@ -1,0 +1,2 @@
+# Set the BFQ I/O scheduler.
+ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/scheduler}="bfq"

@@ -1,0 +1,33 @@
+# Copyright 2019 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+# Problem:
+# When a process does a lot of I/O operations, other processes on my desktop
+# are less responsive, so the whole computer becomes "slow".
+#
+# Solution:
+# Set the BFQ I/O scheduler as the default.
+#
+# In the Linux source code, see the files:
+# - Documentation/block/switching-sched.txt
+# - Documentation/block/bfq-iosched.txt
+#
+# One way to configure BFQ as the default is to set the elevator kernel command
+# line option, but it's more complicated because it requires to *modify* a file
+# (related to GRUB).
+#
+# It's easier with udev, because it's a simple file drop, as explained here:
+# https://bfq.teambelgium.net/
+#
+# See also:
+# https://fedoramagazine.org/check-storage-performance-with-dd/
+# for SSD vs rotational disks (towards the end of the article).
+#
+# A reboot is needed to apply the change.
+- name: set the BFQ I/O scheduler as the default for all disks
+  copy:
+    src: "60-block.rules"
+    dest: "/etc/udev/rules.d/60-block.rules"
+    owner: root
+    group: root
+    mode: 0644
