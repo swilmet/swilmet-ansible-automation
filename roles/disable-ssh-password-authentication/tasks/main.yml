@@ -1,0 +1,11 @@
+# Copyright 2017-2019 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+# For security reasons it's better to disable password authentication. The
+# authentication can be done with keys.
+- name: disable SSH password authentication
+  lineinfile:
+    path: "/etc/ssh/sshd_config"
+    regexp: "^PasswordAuthentication "
+    line: "PasswordAuthentication no"
+    backup: yes
