@@ -7,16 +7,14 @@
 # I really wonder how it will work with Silverblue and Flatpak, for the
 # integration in web browsers.
 
-- name: install the eID-archive package, enabling the eID package repositories
-  package:
-    name: 'https://eid.belgium.be/sites/default/files/software/eid-archive-fedora-2016-2.noarch.rpm'
-    state: present
-  when: ansible_facts['distribution'] == "Fedora" and
+- when: ansible_facts['distribution'] == "Fedora" and
         (ansible_facts['distribution_major_version'] == "29" or
          ansible_facts['distribution_major_version'] == "30")
+  block:
+    - name: install the eID-archive package, enabling the eID package repositories
+      package:
+        name: 'https://eid.belgium.be/sites/default/files/software/eid-archive-fedora-2016-2.noarch.rpm'
+        state: present
 
-- name: install eid-viewer
-  package: name=eid-viewer state=present
-  when: ansible_facts['distribution'] == "Fedora" and
-        (ansible_facts['distribution_major_version'] == "29" or
-         ansible_facts['distribution_major_version'] == "30")
+    - name: install eid-viewer
+      package: name=eid-viewer state=present
