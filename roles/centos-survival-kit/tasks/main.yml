@@ -3,5 +3,13 @@
 ---
 # Installs the EPEL package repository, containing a lot more packages, but not
 # officially/fully supported by Red Hat.
-- name: install epel-release
+- name: CentOS - install EPEL repository
   package: name=epel-release state=present
+
+- name: CentOS - install some essential packages
+  package: name={{ item }} state=present
+  with_items:
+    - bash-completion
+    - bash-completion-extras
+    - man-pages
+    - man-pages-overrides
