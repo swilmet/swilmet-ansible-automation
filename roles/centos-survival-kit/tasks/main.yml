@@ -1,4 +1,4 @@
-# Copyright 2017-2019 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-FileCopyrightText: 2017-2019 Sébastien Wilmet <sebastien.wilmet@gmail.com>
 # SPDX-License-Identifier: GPL-3.0-or-later
 ---
 # Installs the EPEL package repository, containing a lot more packages, but not
