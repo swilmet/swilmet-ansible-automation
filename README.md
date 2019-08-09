@@ -13,5 +13,5 @@ License
 -------
 
 This repository follows the
-[REUSE software practices version 2.0](https://reuse.software/practices/2.0/)
+[REUSE specification version 3.0](https://reuse.software/spec/)
 for copyright and license information.
