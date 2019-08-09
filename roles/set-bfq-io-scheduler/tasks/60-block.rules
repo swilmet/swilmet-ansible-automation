@@ -1,2 +1,5 @@
+# SPDX-FileCopyrightText: 2019 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Set the BFQ I/O scheduler.
 ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/scheduler}="bfq"

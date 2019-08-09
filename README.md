@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2019 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 swilmet-ansible-automation
 ==========================
 
