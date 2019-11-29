@@ -8,8 +8,8 @@
 # integration in web browsers.
 
 - when: ansible_facts['distribution'] == "Fedora" and
-        (ansible_facts['distribution_major_version'] == "29" or
-         ansible_facts['distribution_major_version'] == "30")
+        (ansible_facts['distribution_major_version'] == "30" or
+         ansible_facts['distribution_major_version'] == "31")
   block:
     - name: install the eID-archive package, enabling the eID package repositories
       package:
