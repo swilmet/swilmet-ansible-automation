@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2020 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+- name: disable beep
+  copy:
+    src: "pcspkr-blacklist.conf"
+    dest: "/etc/modprobe.d/pcspkr-blacklist.conf"
+    owner: root
+    group: root
+    mode: 0644
