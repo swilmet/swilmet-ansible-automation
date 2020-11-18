@@ -4,22 +4,28 @@
 - when: ansible_facts['distribution'] == "Fedora" and
         ansible_facts['distribution_major_version'] == "33"
   block:
-    - name: import GPG key for RPM Fusion free Fedora 33
-      rpm_key:
-        key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020"
-        state: present
+    - vars:
+        fedora_version: "33"
+        gpg_key_version: "2020"
+      # Note: it's maybe possible to merge the two blocks, to do the 'when'
+      # plus 'vars' with the same block.
+      block:
+        - name: import GPG key for RPM Fusion free Fedora {{ fedora_version }}
+          rpm_key:
+            key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ gpg_key_version }}"
+            state: present
 
-    - name: import GPG key for RPM Fusion nonfree Fedora 33
-      rpm_key:
-        key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020"
-        state: present
+        - name: import GPG key for RPM Fusion nonfree Fedora {{ fedora_version }}
+          rpm_key:
+            key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ gpg_key_version }}"
+            state: present
 
-    - name: install repo RPM Fusion free Fedora 33
-      package:
-        name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-33.noarch.rpm"
-        state: present
+        - name: install repo RPM Fusion free Fedora {{ fedora_version }}
+          package:
+            name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm"
+            state: present
 
-    - name: install repo RPM Fusion nonfree Fedora 33
-      package:
-        name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-33.noarch.rpm"
-        state: present
+        - name: install repo RPM Fusion nonfree Fedora {{ fedora_version }}
+          package:
+            name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
+            state: present
