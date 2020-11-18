@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2019 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-FileCopyrightText: 2019-2020 Sébastien Wilmet <sebastien.wilmet@gmail.com>
 # SPDX-License-Identifier: GPL-3.0-or-later
 ---
 # For the belgian identity card.
@@ -8,8 +8,8 @@
 # integration in web browsers.
 
 - when: ansible_facts['distribution'] == "Fedora" and
-        (ansible_facts['distribution_major_version'] == "31" or
-         ansible_facts['distribution_major_version'] == "32")
+        (ansible_facts['distribution_major_version'] == "32" or
+         ansible_facts['distribution_major_version'] == "33")
   block:
     - name: install the eID-archive package, enabling the eID package repositories
       package:
