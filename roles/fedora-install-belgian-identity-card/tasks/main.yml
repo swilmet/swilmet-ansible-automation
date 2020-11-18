@@ -12,9 +12,10 @@
          ansible_facts['distribution_major_version'] == "33")
   block:
     - name: install the eID-archive package, enabling the eID package repositories
-      package:
+      dnf:
         name: 'https://eid.belgium.be/sites/default/files/software/eid-archive-fedora-2016-2.noarch.rpm'
         state: present
+        disable_gpg_check: yes
 
     - name: install eid-viewer
       package: name=eid-viewer state=present
