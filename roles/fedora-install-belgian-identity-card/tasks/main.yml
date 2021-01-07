@@ -4,18 +4,20 @@
 # For the belgian identity card.
 # It follows these instructions for Fedora:
 # https://eid.belgium.be/en/linux-eid-software-installation
-# I really wonder how it will work with Silverblue and Flatpak, for the
-# integration in web browsers.
 
 - when: ansible_facts['distribution'] == "Fedora" and
-        (ansible_facts['distribution_major_version'] == "32" or
-         ansible_facts['distribution_major_version'] == "33")
+        ansible_facts['distribution_major_version'] == "33"
   block:
+    - name: add the GPG key to the RPM database
+      rpm_key:
+        key: 'https://files.eid.belgium.be/6773d225.asc'
+        state: present
+        fingerprint: 'B37D 9040 098C 3DEE E00F 6D08 A357 43EA 6773 D225'
+
     - name: install the eID-archive package, enabling the eID package repositories
       dnf:
         name: 'https://eid.belgium.be/sites/default/files/software/eid-archive-fedora-2016-2.noarch.rpm'
         state: present
-        disable_gpg_check: yes
 
     - name: install eid-viewer
       package: name=eid-viewer state=present
