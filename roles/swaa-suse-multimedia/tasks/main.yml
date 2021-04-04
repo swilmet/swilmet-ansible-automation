@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: 2020-2021 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+- name: install Packman Essentials SUSE repo
+  zypper_repository:
+    repo: 'http://ftp.gwdg.de/pub/linux/misc/packman/suse/SLE_15/Essentials/'
+    auto_import_keys: yes
+    name: 'packman-essentials'
+
+- name: install Packman Multimedia SUSE repo
+  zypper_repository:
+    repo: 'http://ftp.gwdg.de/pub/linux/misc/packman/suse/SLE_15/Multimedia/'
+    auto_import_keys: yes
+    name: 'packman-multimedia'
+
+- name: install SUSE repo for libdvdcss
+  zypper_repository:
+    repo: 'http://opensuse-guide.org/repo/openSUSE_Leap_15.2/'
+    auto_import_keys: yes
+    name: 'dvd'
+
+- name: switch system package to those in packman
+  zypper:
+    name: '*'
+    state: latest
+    disable_recommends: no
+    extra_args: '--allow-vendor-change'
+
+- name: install some multimedia packages
+  zypper:
+    state: present
+    disable_recommends: no
+    name:
+      - libdvdcss2
+      - libavdevice58
+      - vlc
