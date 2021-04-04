@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2020-2021 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+# For the belgian identity card.
+# It follows these instructions for SUSE:
+# https://eid.belgium.be/en/linux-eid-software-installation
+
+- name: add the GPG key to the RPM database
+  rpm_key:
+    key: 'https://files.eid.belgium.be/6773d225.asc'
+    state: present
+    fingerprint: 'B37D 9040 098C 3DEE E00F 6D08 A357 43EA 6773 D225'
+
+- name: install the eID-archive package, enabling the eID package repositories
+  zypper:
+    name: 'https://eid.belgium.be/sites/default/files/software/eid-archive-suse-2016-2.noarch.rpm'
+    state: present
+
+- name: install eid-viewer
+  zypper:
+    name: 'eid-viewer'
+    state: present
