@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2021 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+- name: create directory
+  file:
+    path: "~/.local/share/applications/"
+    state: directory
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+    mode: 0700
+
+- name: be able to open gnome-terminal with the window directly maximized
+  copy:
+    src: "maximized-terminal.desktop"
+    dest: "~/.local/share/applications/maximized-terminal.desktop"
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+    mode: 0644

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=MaximizedTerminal
+Comment=Use the command line
+Keywords=shell;prompt;command;commandline;
+Exec=gnome-terminal --maximize
+Icon=org.gnome.Terminal
+Type=Application
+Categories=GNOME;GTK;System;TerminalEmulator;
+StartupNotify=true
+X-GNOME-SingleWindow=false
