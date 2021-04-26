@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2021 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+- name: configure imwheel for the user
+  copy:
+    src: "imwheelrc"
+    dest: "~/.imwheelrc"
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+    mode: 0664
+
+- name: autostart imwheel on desktop session opening
+  copy:
+    src: "imwheel.desktop"
+    dest: "~/.config/autostart/imwheel.desktop"
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+    mode: 0664
