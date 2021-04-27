@@ -1,0 +1,38 @@
+[user]
+	name = Sébastien Wilmet
+	email = sw@swilmet.be
+
+[alias]
+	d = diff
+	l = log --graph --decorate --oneline
+	lo = log --graph --decorate --oneline --all
+	lolall = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	t = status --untracked-files=no
+	s = status
+	st = log --stat
+	r = reset --hard HEAD
+	w = checkout -b wip/misc
+
+[pull]
+	rebase = false
+
+[push]
+	default = current
+
+[core]
+	excludesFile = ~/.gitignore
+
+[commit]
+	verbose = true
+
+[am]
+	threeWay = true
+
+[rebase]
+	autoSquash = true
+
+[log]
+	follow = true
+
+[merge]
+	conflictStyle = diff3
