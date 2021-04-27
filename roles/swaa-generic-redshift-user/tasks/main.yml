@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2021 Sébastien Wilmet <sebastien.wilmet@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+- name: configure redshift for the user
+  copy:
+    src: "redshift.conf"
+    dest: "~/.config/redshift.conf"
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+    mode: 0664
+
+- name: autostart redshift on desktop session opening
+  copy:
+    src: "redshift.desktop"
+    dest: "~/.config/autostart/redshift.desktop"
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+    mode: 0664
